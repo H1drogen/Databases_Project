@@ -52,4 +52,5 @@ CREATE TABLE LoanHistory (
     LoanID INT,
     LoanDate DATE,
     ReturnDate DATE,
-    FOREIGN KEY (LoanID) REFERENCES);
+    FOREIGN KEY (LoanID) REFERENCES Loans(LoanID)
+                         );
