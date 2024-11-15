@@ -14,7 +14,7 @@ CREATE TABLE Members (
     Name VARCHAR(255),
     MemberType VARCHAR(50) CHECK (MemberType IN ('Student', 'Staff')),
     MaxLoans INT DEFAULT 0,
-    Suspended BOOLEAN DEFAULT FALSE
+    Suspended NUMBER(1) DEFAULT 0 CHECK (Suspended IN (0, 1))
 );
 
 CREATE TABLE Loans (
@@ -24,7 +24,7 @@ CREATE TABLE Loans (
     LoanDate DATE,
     ReturnDate DATE,
     DueDate DATE,
-    Overdue BOOLEAN DEFAULT FALSE,
+    Overdue NUMBER(1) DEFAULT 0 CHECK (Overdue IN (0, 1)),
     FOREIGN KEY (ResourceID) REFERENCES Resources(ResourceID),
     FOREIGN KEY (MemberID) REFERENCES Members(MemberID)
 );
@@ -43,7 +43,7 @@ CREATE TABLE Fines (
     FineID INT PRIMARY KEY,
     MemberID INT,
     Amount DECIMAL(5, 2),
-    Paid BOOLEAN DEFAULT FALSE,
+    Paid NUMBER(1) DEFAULT 0 CHECK (Paid IN (0, 1)),
     FOREIGN KEY (MemberID) REFERENCES Members(MemberID)
 );
 
